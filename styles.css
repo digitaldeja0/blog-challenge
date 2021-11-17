@@ -23,13 +23,54 @@ body{
     padding-left: 5px;
 }
 
+/* Form */
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 90px 10px 30px 10px ;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.post-title,
+.post-body{
+
+    border-radius: 10px;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(241,193,236,0.8882106413994169) 0%, rgba(236,236,236,1) 100%);
+    font-weight: 700;
+}
+
+ 
+
+.form-button{
+    background-color:#0D0557;
+	color: #FFF;
+	height: 45px;
+    padding: 5px;
+    margin: 10px auto;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Breaker */
+
+.breaker{
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
 /* Blog List */
 
 .container{
 	
 	color: #FFF;
 	border-radius: 10px; 
-    padding: 70px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
 }
 
 
