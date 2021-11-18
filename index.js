@@ -1,11 +1,9 @@
 const submitBtn = document.getElementById('form-button')
+const form = document.getElementById("form")
+let postsList = []
 
-
-fetch('https://apis.scrimba.com/jsonplaceholder/posts')
-  .then(response => response.json())
-  .then(data => {
-    const postsList = data.slice(0,5)
-    let html = ''
+function postRender(){
+  let html = ''
     for(let post of postsList){
       html+=`
       <h3>${post.title}</h3>
@@ -14,11 +12,20 @@ fetch('https://apis.scrimba.com/jsonplaceholder/posts')
       `
     }
     document.getElementById('container').innerHTML = html
+}
+
+
+// Add API Data to display via the HTML document
+fetch('https://apis.scrimba.com/jsonplaceholder/posts')
+  .then(response => response.json())
+  .then(data => {
+    postsList = data.slice(0,5)
+    postRender()
   }) 
 
 
 
-  // Form Submit 
+  // Form Submit and Post Request Operations
  submitBtn.addEventListener('click',function(e){
   const titleValue = document.getElementById('post-title').value
   const bodyValue = document.getElementById('post-body').value
@@ -27,9 +34,21 @@ fetch('https://apis.scrimba.com/jsonplaceholder/posts')
     title: titleValue,
     body: bodyValue
   }
-   console.log(data);
+   fetch('https://apis.scrimba.com/jsonplaceholder/posts', {
+     method:'POST',
+     body: JSON.stringify(data),
+     headers:{'Content-Type': 'application/json'}
+   })
+
+    .then(res=> res.json())
+    .then(data=> {
+      postsList.unshift(data)
+      postRender()
+
+    })
 
    e.preventDefault()
+   form.reset();
   });
 
 
